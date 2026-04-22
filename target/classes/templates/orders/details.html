@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Детали заказа - Skin Market</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .nav a { margin-right: 15px; text-decoration: none; color: #667eea; }
+        .order-card { border: 1px solid #ddd; padding: 20px; border-radius: 8px; margin-top: 20px; }
+        .status { font-weight: bold; }
+        .status-NEW { color: #007bff; }
+        .status-IN_PROGRESS { color: #ffc107; }
+        .status-REVIEW { color: #17a2b8; }
+        .status-COMPLETED { color: #28a745; }
+        .status-CANCELLED { color: #dc3545; }
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 5px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-chat { background: #28a745; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="nav">
+        <a href="/">Главная</a>
+        <a href="/orders">Заказы</a>
+        <a href="/marketplace">Доска художников</a>
+        <a href="/users/profile">Профиль</a>
+    </div>
+
+    <div class="order-card">
+        <h2>Заказ #<span th:text="${order.id}"></span></h2>
+        <p><strong>Статус:</strong> <span th:class="'status ' + 'status-' + ${order.status.name()}" th:text="${order.status}"></span></p>
+        <p><strong>Описание:</strong> <span th:text="${order.description}"></span></p>
+        <p><strong>Цена:</strong> <span th:text="${order.price}"></span></p>
+        <p><strong>Заказчик:</strong> <span th:text="${order.customerName}"></span></p>
+        <p><strong>Художник:</strong> <span th:text="${order.artistName}"></span></p>
+        <p><strong>Создан:</strong> <span th:text="${order.createdAt}"></span></p>
+        <p th:if="${order.completedAt}"><strong>Завершен:</strong> <span th:text="${order.completedAt}"></span></p>
+
+        <div style="margin-top: 20px;">
+            <a th:href="@{/chat/order/{id}(id=${order.id})}" class="btn btn-chat">💬 Чат с художником</a>
+            <a href="/orders" class="btn">← Назад</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Пользователи - Skin Market</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; }
+        .nav a { margin-right: 15px; text-decoration: none; color: #667eea; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background: #667eea; color: white; cursor: pointer; }
+        th:hover { background: #6c68ff; }
+        .role-USER { color: #007bff; }
+        .role-ARTIST { color: #28a745; }
+        .role-ADMIN { color: #dc3545; }
+        .role-STUDIO { color: #ffc107; }
+
+        /* Пагинация */
+        .pagination { display: flex; justify-content: center; margin-top: 30px; gap: 5px; flex-wrap: wrap; }
+        .pagination a, .pagination span { padding: 8px 12px; text-decoration: none; border: 1px solid #ddd; border-radius: 4px; color: #667eea; }
+        .pagination a:hover { background: #667eea; color: white; }
+        .pagination .active { background: #667eea; color: white; border-color: #667eea; }
+        .pagination .disabled { color: #ccc; cursor: not-allowed; }
+
+        .info-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .page-size-select { padding: 5px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="nav">
+        <a href="/">Главная</a>
+        <a href="/marketplace">Художники</a>
+        <a href="/studios">Студии</a>
+        <a href="/users">Пользователи</a>
+        <a href="/users/profile">Профиль</a>
+        <a href="/orders">Заказы</a>
+        <form th:action="@{/logout}" method="post" style="display:inline;">
+            <button type="submit" style="background:none; border:none; color:#667eea; cursor:pointer;">Выйти</button>
+        </form>
+    </div>
+
+    <h1>Пользователи системы</h1>
+
+    <div class="info-bar">
+        <div>Всего пользователей: <strong th:text="${totalItems}"></strong></div>
+        <div>
+            Показывать по:
+            <select class="page-size-select" onchange="changePageSize(this.value)">
+                <option value="5" th:selected="${pageSize == 5}">5</option>
+                <option value="10" th:selected="${pageSize == 10}">10</option>
+                <option value="20" th:selected="${pageSize == 20}">20</option>
+                <option value="50" th:selected="${pageSize == 50}">50</option>
+            </select>
+        </div>
+    </div>
+
+    <div th:if="${users == null or users.empty}">
+        <p>Нет зарегистрированных пользователей</p>
+    </div>
+
+    <div th:unless="${users == null or users.empty}">
+        <table>
+            <thead>
+            <tr>
+                <th><a href="#" class="sort-link" onclick="sortBy('id')">ID</a></th>
+                <th><a href="#" class="sort-link" onclick="sortBy('username')">Имя</a></th>
+                <th><a href="#" class="sort-link" onclick="sortBy('email')">Email</a></th>
+                <th><a href="#" class="sort-link" onclick="sortBy('role')">Роль</a></th>
+                <th><a href="#" class="sort-link" onclick="sortBy('balance')">Баланс</a></th>
+                <th><a href="#" class="sort-link" onclick="sortBy('registeredAt')">Дата регистрации</a></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}"></td>
+                <td><a th:href="@{/users/{id}(id=${user.id})}" th:text="${user.username}"></a></td>
+                <td th:text="${user.email}"></td>
+                <td><span th:class="'role-' + ${user.role.name()}" th:text="${user.role.name()}"></span></td>
+                <td th:text="${user.balance}"></td>
+                <td th:text="${#temporals.format(user.registeredAt, 'dd.MM.yyyy HH:mm')}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!-- Пагинация -->
+        <div class="pagination">
+            <a th:if="${currentPage > 0}" th:href="@{/users(page=${currentPage - 1}, size=${pageSize}, sort=${sortField})}">« Предыдущая</a>
+            <span th:if="${currentPage == 0}" class="disabled">« Предыдущая</span>
+
+            <a th:each="pageNum : ${pageNumbers}"
+               th:href="@{/users(page=${pageNum}, size=${pageSize}, sort=${sortField})}"
+               th:text="${pageNum + 1}"
+               th:class="${pageNum == currentPage} ? 'active' : ''"></a>
+
+            <a th:if="${currentPage + 1 < totalPages}" th:href="@{/users(page=${currentPage + 1}, size=${pageSize}, sort=${sortField})}">Следующая »</a>
+            <span th:if="${currentPage + 1 >= totalPages}" class="disabled">Следующая »</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    function changePageSize(size) {
+    window.location.href = '/marketplace?page=0&size=' + size + '&sort=' + '[[${sortField}]]' + '&direction=' + '[[${sortDirection}]]';
+}
+
+function changeSort(sort) {
+    window.location.href = '/marketplace?page=0&size=' + '[[${pageSize}]]' + '&sort=' + sort + '&direction=' + '[[${sortDirection}]]';
+}
+
+function changeDirection() {
+    var newDirection = '[[${sortDirection}]]' === 'ASC' ? 'DESC' : 'ASC';
+    window.location.href = '/marketplace?page=0&size=' + '[[${pageSize}]]' + '&sort=' + '[[${sortField}]]' + '&direction=' + newDirection;
+}
+</script>
+</body>
+</html>

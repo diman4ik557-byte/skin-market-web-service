@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Доска художников - Skin Market</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; }
+        .nav a { margin-right: 15px; text-decoration: none; color: #667eea; }
+        .artists-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .artist-card { background: white; border: 1px solid #ddd; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .artist-name { font-size: 20px; font-weight: bold; color: #333; margin-bottom: 10px; }
+        .artist-role { color: #667eea; margin-bottom: 15px; }
+        .artist-stats { margin: 15px 0; padding: 10px; background: #f8f9fa; border-radius: 5px; }
+        .stat { margin: 5px 0; }
+        .stat-label { font-weight: bold; }
+        .btn { display: inline-block; padding: 10px 20px; background: #667eea; color: white; text-decoration: none; border-radius: 5px; margin-top: 10px; }
+        .btn-order { background: #28a745; }
+        .status-available { color: green; font-weight: bold; }
+
+        /* Пагинация */
+        .pagination { display: flex; justify-content: center; margin-top: 30px; gap: 5px; flex-wrap: wrap; }
+        .pagination a, .pagination span { padding: 8px 12px; text-decoration: none; border: 1px solid #ddd; border-radius: 4px; color: #667eea; }
+        .pagination a:hover { background: #667eea; color: white; }
+        .pagination .active { background: #667eea; color: white; border-color: #667eea; }
+        .pagination .disabled { color: #ccc; cursor: not-allowed; }
+
+        .info-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .page-size-select { padding: 5px; border-radius: 4px; }
+        .sort-select { padding: 5px; border-radius: 4px; margin-left: 10px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="nav">
+        <a href="/">Главная</a>
+        <a href="/marketplace">Доска художников</a>
+        <a href="/users/profile">Мой профиль</a>
+        <a href="/orders">Заказы</a>
+        <a href="/studios">Студии</a>
+        <form th:action="@{/logout}" method="post" style="display:inline;">
+            <button type="submit" style="background:none; border:none; color:#667eea; cursor:pointer;">Выйти</button>
+        </form>
+    </div>
+
+    <h1>Доска художников</h1>
+    <p>Выберите художника для создания уникального скина для Minecraft</p>
+
+    <div class="info-bar">
+        <div>Всего художников: <strong th:text="${totalItems}"></strong></div>
+        <div>
+            Показывать по:
+            <select class="page-size-select" onchange="changePageSize(this.value)">
+                <option value="5" th:selected="${pageSize == 5}">5</option>
+                <option value="10" th:selected="${pageSize == 10}">10</option>
+                <option value="20" th:selected="${pageSize == 20}">20</option>
+                <option value="50" th:selected="${pageSize == 50}">50</option>
+            </select>
+
+            <select class="sort-select" onchange="changeSort(this.value)">
+                <option value="username" th:selected="${sortField == 'username'}">По имени</option>
+                <option value="registeredAt" th:selected="${sortField == 'registeredAt'}">По дате регистрации</option>
+                <option value="balance" th:selected="${sortField == 'balance'}">По балансу</option>
+            </select>
+        </div>
+    </div>
+
+    <div th:if="${artists == null or artists.empty}">
+        <p>Пока нет зарегистрированных художников</p>
+    </div>
+
+    <div th:unless="${artists == null or artists.empty}" class="artists-grid">
+        <div th:each="artist : ${artists}" class="artist-card">
+            <div class="artist-name" th:text="${artist.username}"></div>
+            <div class="artist-role" th:text="'🎨 ' + ${artist.role}"></div>
+            <div class="artist-stats">
+                <div class="stat">
+                    <span class="stat-label">Баланс:</span>
+                    <span th:text="${artist.balance}"></span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Регистрация:</span>
+                    <span th:text="${#temporals.format(artist.registeredAt, 'dd.MM.yyyy')}"></span>
+                </div>
+            </div>
+            <div class="status-available">Доступен для заказов</div>
+            <a th:href="@{/orders/create(artistId=${artist.id})}" class="btn btn-order">Заказать скин</a>
+            <a th:href="@{/marketplace/artist/{id}(id=${artist.id})}" class="btn">Подробнее</a>
+        </div>
+    </div>
+
+    <!-- Пагинация -->
+    <div class="pagination">
+        <a th:if="${currentPage > 0}"
+           th:href="@{/marketplace(page=${currentPage - 1}, size=${pageSize}, sort=${sortField}, direction=${sortDirection})}">
+            « Предыдущая
+        </a>
+        <span th:if="${currentPage == 0}" class="disabled">« Предыдущая</span>
+
+        <a th:each="pageNum : ${pageNumbers}"
+           th:href="@{/marketplace(page=${pageNum}, size=${pageSize}, sort=${sortField}, direction=${sortDirection})}"
+           th:text="${pageNum + 1}"
+           th:class="${pageNum == currentPage} ? 'active' : ''"></a>
+
+        <a th:if="${currentPage + 1 < totalPages}"
+           th:href="@{/marketplace(page=${currentPage + 1}, size=${pageSize}, sort=${sortField}, direction=${sortDirection})}">
+            Следующая »
+        </a>
+        <span th:if="${currentPage + 1 >= totalPages}" class="disabled">Следующая »</span>
+    </div>
+
+    <script>
+        function changePageSize(size) {
+        window.location.href = '/marketplace?page=0&size=' + size + '&sort=' + '[[${sortField}]]' + '&direction=' + '[[${sortDirection}]]';
+    }
+
+    function changeSort(sort) {
+        window.location.href = '/marketplace?page=0&size=' + '[[${pageSize}]]' + '&sort=' + sort + '&direction=' + '[[${sortDirection}]]';
+    }
+
+    function changeDirection() {
+        var newDirection = '[[${sortDirection}]]' === 'ASC' ? 'DESC' : 'ASC';
+        window.location.href = '/marketplace?page=0&size=' + '[[${pageSize}]]' + '&sort=' + '[[${sortField}]]' + '&direction=' + newDirection;
+    }
+    </script>
+
+    </body>
+</html>

@@ -1,0 +1,177 @@
+2026-04-23 01:13:15.808 INFO  [main] b.step.controller.HomeControllerTest - Starting HomeControllerTest using Java 17.0.18 with PID 9204 (started by diman in /mnt/c/Users/diman/IdeaProjects/skin-market/web-service)
+2026-04-23 01:13:15.832 INFO  [main] b.step.controller.HomeControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-04-23 01:13:17.783 DEBUG [main] o.s.c.o.FeignClientsRegistrar$1 - Identified candidate component class: file [/mnt/c/Users/diman/IdeaProjects/skin-market/web-service/target/classes/by/step/client/AuthServiceClient.class]
+2026-04-23 01:13:17.784 DEBUG [main] o.s.c.o.FeignClientsRegistrar$1 - Identified candidate component class: file [/mnt/c/Users/diman/IdeaProjects/skin-market/web-service/target/classes/by/step/client/BusinessServiceClient.class]
+2026-04-23 01:13:23.497 WARN  [main] o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: a5e82517-b1cf-415b-abdf-0cf607749901
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-04-23 01:13:25.049 INFO  [main] o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@17f8c75e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@474f69d, org.springframework.security.web.context.SecurityContextHolderFilter@e822394, org.springframework.security.web.header.HeaderWriterFilter@d56d9f6, org.springframework.web.filter.CorsFilter@6a17ab87, org.springframework.security.web.authentication.logout.LogoutFilter@f64f47a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7c4b7bc3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5a36a405, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5f0bcadb, org.springframework.security.web.access.ExceptionTranslationFilter@2057d8ec, org.springframework.security.web.access.intercept.AuthorizationFilter@358b70c4]
+2026-04-23 01:13:25.098 DEBUG [main] o.s.c.o.FeignClientFactoryBean - Creating a FeignClientFactoryBean.
+2026-04-23 01:13:25.103 DEBUG [main] o.s.c.o.FeignClientFactoryBean - Creating a FeignClientFactoryBean.
+2026-04-23 01:13:26.372 INFO  [main] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-04-23 01:13:26.373 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-04-23 01:13:26.376 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 3 ms
+2026-04-23 01:13:26.470 INFO  [main] b.step.controller.HomeControllerTest - Started HomeControllerTest in 12.698 seconds (process running for 16.881)
+2026-04-23 01:13:26.627 WARN  [main] o.s.w.s.h.HandlerMappingIntrospector - Cache miss for REQUEST dispatch to '/login' (previous null). Performing CorsConfiguration lookup. This is logged once only at WARN level, and every time at TRACE.
+2026-04-23 01:13:28.100 INFO  [main] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [by.step.controller.OrderControllerTest]: OrderControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-04-23 01:13:28.145 INFO  [main] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration by.step.WebServiceApplication for test class by.step.controller.OrderControllerTest
+2026-04-23 01:13:28.388 INFO  [main] b.s.controller.OrderControllerTest - Starting OrderControllerTest using Java 17.0.18 with PID 9204 (started by diman in /mnt/c/Users/diman/IdeaProjects/skin-market/web-service)
+2026-04-23 01:13:28.389 INFO  [main] b.s.controller.OrderControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-04-23 01:13:29.200 DEBUG [main] o.s.c.o.FeignClientsRegistrar$1 - Identified candidate component class: file [/mnt/c/Users/diman/IdeaProjects/skin-market/web-service/target/classes/by/step/client/AuthServiceClient.class]
+2026-04-23 01:13:29.201 DEBUG [main] o.s.c.o.FeignClientsRegistrar$1 - Identified candidate component class: file [/mnt/c/Users/diman/IdeaProjects/skin-market/web-service/target/classes/by/step/client/BusinessServiceClient.class]
+2026-04-23 01:13:29.658 DEBUG [main] o.s.c.o.FeignClientFactoryBean - Creating a FeignClientFactoryBean.
+2026-04-23 01:13:29.946 WARN  [main] o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 60d41097-2faf-4a32-93de-cea86b25932c
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-04-23 01:13:30.008 INFO  [main] o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3eebd1ee, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@671f984c, org.springframework.security.web.context.SecurityContextHolderFilter@683ba3c1, org.springframework.security.web.header.HeaderWriterFilter@4fe256c0, org.springframework.web.filter.CorsFilter@5a947fd5, org.springframework.security.web.csrf.CsrfFilter@6614e25, org.springframework.security.web.authentication.logout.LogoutFilter@22059c63, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@2a4ff62, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@24ad3cd0, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@4c0fe501, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@58e9cc9a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@64a7c885, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@79242162, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2c0b29cf, org.springframework.security.web.access.ExceptionTranslationFilter@8c2bb88, org.springframework.security.web.access.intercept.AuthorizationFilter@78828aca]
+2026-04-23 01:13:30.017 INFO  [main] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-04-23 01:13:30.018 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-04-23 01:13:30.020 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+2026-04-23 01:13:30.029 INFO  [main] b.s.controller.OrderControllerTest - Started OrderControllerTest in 1.874 seconds (process running for 20.441)
+2026-04-23 01:13:30.236 WARN  [main] o.s.w.s.h.HandlerMappingIntrospector - Cache miss for REQUEST dispatch to '/orders/customer/1' (previous null). Performing CorsConfiguration lookup. This is logged once only at WARN level, and every time at TRACE.
+2026-04-23 01:13:30.517 INFO  [main] by.step.controller.OrderController - Отмена заказа: 1
+2026-04-23 01:13:30.630 INFO  [main] by.step.controller.OrderController - Завершение заказа: 1
+2026-04-23 01:13:30.956 INFO  [main] by.step.controller.OrderController - Начало выполнения заказа: 1
+2026-04-23 01:13:31.014 INFO  [main] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [by.step.controller.UserControllerTest]: UserControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-04-23 01:13:31.080 INFO  [main] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration by.step.WebServiceApplication for test class by.step.controller.UserControllerTest
+2026-04-23 01:13:31.326 INFO  [main] b.step.controller.UserControllerTest - Starting UserControllerTest using Java 17.0.18 with PID 9204 (started by diman in /mnt/c/Users/diman/IdeaProjects/skin-market/web-service)
+2026-04-23 01:13:31.328 INFO  [main] b.step.controller.UserControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-04-23 01:13:32.151 DEBUG [main] o.s.c.o.FeignClientsRegistrar$1 - Identified candidate component class: file [/mnt/c/Users/diman/IdeaProjects/skin-market/web-service/target/classes/by/step/client/AuthServiceClient.class]
+2026-04-23 01:13:32.152 DEBUG [main] o.s.c.o.FeignClientsRegistrar$1 - Identified candidate component class: file [/mnt/c/Users/diman/IdeaProjects/skin-market/web-service/target/classes/by/step/client/BusinessServiceClient.class]
+2026-04-23 01:13:32.242 DEBUG [main] o.s.c.o.FeignClientFactoryBean - Creating a FeignClientFactoryBean.
+2026-04-23 01:13:32.539 WARN  [main] o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: b52b515e-4b0e-4c60-bf78-8d8755fb9083
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-04-23 01:13:32.548 INFO  [main] o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@187a5b38, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@225bc6d6, org.springframework.security.web.context.SecurityContextHolderFilter@4919cfcf, org.springframework.security.web.header.HeaderWriterFilter@5ca01434, org.springframework.web.filter.CorsFilter@42122f28, org.springframework.security.web.csrf.CsrfFilter@7d143e6e, org.springframework.security.web.authentication.logout.LogoutFilter@2eb76c8c, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@124e5ce1, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@2f8d7fcb, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@253ab1d3, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@4184d960, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@15a26fcc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@73d0d431, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6f538dd7, org.springframework.security.web.access.ExceptionTranslationFilter@1eff0d64, org.springframework.security.web.access.intercept.AuthorizationFilter@1bb425e4]
+2026-04-23 01:13:32.558 INFO  [main] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-04-23 01:13:32.559 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-04-23 01:13:32.560 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+2026-04-23 01:13:32.571 INFO  [main] b.step.controller.UserControllerTest - Started UserControllerTest in 1.482 seconds (process running for 22.983)
+2026-04-23 01:13:32.581 WARN  [main] o.s.w.s.h.HandlerMappingIntrospector - Cache miss for REQUEST dispatch to '/users/1' (previous null). Performing CorsConfiguration lookup. This is logged once only at WARN level, and every time at TRACE.
+2026-04-23 01:23:04.058 INFO  [main] b.step.controller.HomeControllerTest - Starting HomeControllerTest using Java 17.0.18 with PID 9987 (started by diman in /mnt/c/Users/diman/IdeaProjects/skin-market/web-service)
+2026-04-23 01:23:04.063 INFO  [main] b.step.controller.HomeControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-04-23 01:23:06.399 DEBUG [main] o.s.c.o.FeignClientsRegistrar$1 - Identified candidate component class: file [/mnt/c/Users/diman/IdeaProjects/skin-market/web-service/target/classes/by/step/client/AuthServiceClient.class]
+2026-04-23 01:23:06.400 DEBUG [main] o.s.c.o.FeignClientsRegistrar$1 - Identified candidate component class: file [/mnt/c/Users/diman/IdeaProjects/skin-market/web-service/target/classes/by/step/client/BusinessServiceClient.class]
+2026-04-23 01:23:13.765 WARN  [main] o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 6e2e7c7d-2413-4778-ad48-a5cf1a40d515
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-04-23 01:23:15.666 INFO  [main] o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@79927a7c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@484f7fad, org.springframework.security.web.context.SecurityContextHolderFilter@33ef701e, org.springframework.security.web.header.HeaderWriterFilter@34c31a34, org.springframework.web.filter.CorsFilter@61d87509, org.springframework.security.web.authentication.logout.LogoutFilter@22edca96, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@814b60b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@515a897c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4ae1ee85, org.springframework.security.web.access.ExceptionTranslationFilter@4ec25389, org.springframework.security.web.access.intercept.AuthorizationFilter@18563d10]
+2026-04-23 01:23:15.744 DEBUG [main] o.s.c.o.FeignClientFactoryBean - Creating a FeignClientFactoryBean.
+2026-04-23 01:23:15.749 DEBUG [main] o.s.c.o.FeignClientFactoryBean - Creating a FeignClientFactoryBean.
+2026-04-23 01:23:16.852 INFO  [main] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-04-23 01:23:16.854 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-04-23 01:23:16.858 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 4 ms
+2026-04-23 01:23:17.046 INFO  [main] b.step.controller.HomeControllerTest - Started HomeControllerTest in 15.438 seconds (process running for 20.041)
+2026-04-23 01:23:17.299 WARN  [main] o.s.w.s.h.HandlerMappingIntrospector - Cache miss for REQUEST dispatch to '/login' (previous null). Performing CorsConfiguration lookup. This is logged once only at WARN level, and every time at TRACE.
+2026-04-23 01:23:19.070 INFO  [main] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [by.step.controller.OrderControllerTest]: OrderControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-04-23 01:23:19.105 INFO  [main] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration by.step.WebServiceApplication for test class by.step.controller.OrderControllerTest
+2026-04-23 01:23:19.511 INFO  [main] b.s.controller.OrderControllerTest - Starting OrderControllerTest using Java 17.0.18 with PID 9987 (started by diman in /mnt/c/Users/diman/IdeaProjects/skin-market/web-service)
+2026-04-23 01:23:19.512 INFO  [main] b.s.controller.OrderControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-04-23 01:23:20.509 DEBUG [main] o.s.c.o.FeignClientsRegistrar$1 - Identified candidate component class: file [/mnt/c/Users/diman/IdeaProjects/skin-market/web-service/target/classes/by/step/client/AuthServiceClient.class]
+2026-04-23 01:23:20.510 DEBUG [main] o.s.c.o.FeignClientsRegistrar$1 - Identified candidate component class: file [/mnt/c/Users/diman/IdeaProjects/skin-market/web-service/target/classes/by/step/client/BusinessServiceClient.class]
+2026-04-23 01:23:21.122 DEBUG [main] o.s.c.o.FeignClientFactoryBean - Creating a FeignClientFactoryBean.
+2026-04-23 01:23:21.438 WARN  [main] o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 434ddff8-3232-461b-bae5-7940b7108be9
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-04-23 01:23:21.514 INFO  [main] o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4ddb882, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@68e5b609, org.springframework.security.web.context.SecurityContextHolderFilter@79527eb9, org.springframework.security.web.header.HeaderWriterFilter@4e01cba8, org.springframework.web.filter.CorsFilter@4d1f1b98, org.springframework.security.web.csrf.CsrfFilter@f337f10, org.springframework.security.web.authentication.logout.LogoutFilter@6ca96aef, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@11bdb62f, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@4214a4cb, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@36011924, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@4c56e671, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6d0d557c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@20873a9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5ff1aece, org.springframework.security.web.access.ExceptionTranslationFilter@7023e935, org.springframework.security.web.access.intercept.AuthorizationFilter@24ad3cd0]
+2026-04-23 01:23:21.527 INFO  [main] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-04-23 01:23:21.528 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-04-23 01:23:21.529 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+2026-04-23 01:23:21.540 INFO  [main] b.s.controller.OrderControllerTest - Started OrderControllerTest in 2.428 seconds (process running for 24.534)
+2026-04-23 01:23:21.743 WARN  [main] o.s.w.s.h.HandlerMappingIntrospector - Cache miss for REQUEST dispatch to '/orders/customer/1' (previous null). Performing CorsConfiguration lookup. This is logged once only at WARN level, and every time at TRACE.
+2026-04-23 01:23:22.029 INFO  [main] by.step.controller.OrderController - Отмена заказа: 1
+2026-04-23 01:23:22.175 INFO  [main] by.step.controller.OrderController - Завершение заказа: 1
+2026-04-23 01:23:22.552 INFO  [main] by.step.controller.OrderController - Начало выполнения заказа: 1
+2026-04-23 01:23:22.592 INFO  [main] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [by.step.controller.UserControllerTest]: UserControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-04-23 01:23:22.645 INFO  [main] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration by.step.WebServiceApplication for test class by.step.controller.UserControllerTest
+2026-04-23 01:23:22.847 INFO  [main] b.step.controller.UserControllerTest - Starting UserControllerTest using Java 17.0.18 with PID 9987 (started by diman in /mnt/c/Users/diman/IdeaProjects/skin-market/web-service)
+2026-04-23 01:23:22.848 INFO  [main] b.step.controller.UserControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-04-23 01:23:23.680 DEBUG [main] o.s.c.o.FeignClientsRegistrar$1 - Identified candidate component class: file [/mnt/c/Users/diman/IdeaProjects/skin-market/web-service/target/classes/by/step/client/AuthServiceClient.class]
+2026-04-23 01:23:23.681 DEBUG [main] o.s.c.o.FeignClientsRegistrar$1 - Identified candidate component class: file [/mnt/c/Users/diman/IdeaProjects/skin-market/web-service/target/classes/by/step/client/BusinessServiceClient.class]
+2026-04-23 01:23:23.775 DEBUG [main] o.s.c.o.FeignClientFactoryBean - Creating a FeignClientFactoryBean.
+2026-04-23 01:23:24.019 WARN  [main] o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 4a53d514-7a88-4378-8bf3-f74fe3915b77
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-04-23 01:23:24.031 INFO  [main] o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4fb8d97a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@eebbe46, org.springframework.security.web.context.SecurityContextHolderFilter@12c448c, org.springframework.security.web.header.HeaderWriterFilter@4ac8bbef, org.springframework.web.filter.CorsFilter@318d0545, org.springframework.security.web.csrf.CsrfFilter@12fb67f6, org.springframework.security.web.authentication.logout.LogoutFilter@5ca01434, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1f041bad, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@7d143e6e, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@1bb425e4, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@5afe1da5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@48214788, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@728ce413, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@124e5ce1, org.springframework.security.web.access.ExceptionTranslationFilter@6bfa2da2, org.springframework.security.web.access.intercept.AuthorizationFilter@5bb34437]
+2026-04-23 01:23:24.040 INFO  [main] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-04-23 01:23:24.041 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-04-23 01:23:24.042 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+2026-04-23 01:23:24.050 INFO  [main] b.step.controller.UserControllerTest - Started UserControllerTest in 1.397 seconds (process running for 27.045)
+2026-04-23 01:23:24.057 WARN  [main] o.s.w.s.h.HandlerMappingIntrospector - Cache miss for REQUEST dispatch to '/users/1' (previous null). Performing CorsConfiguration lookup. This is logged once only at WARN level, and every time at TRACE.
+2026-04-23 01:24:24.960 INFO  [main] b.step.controller.HomeControllerTest - Starting HomeControllerTest using Java 17.0.18 with PID 10166 (started by diman in /mnt/c/Users/diman/IdeaProjects/skin-market/web-service)
+2026-04-23 01:24:24.965 INFO  [main] b.step.controller.HomeControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-04-23 01:24:27.365 DEBUG [main] o.s.c.o.FeignClientsRegistrar$1 - Identified candidate component class: file [/mnt/c/Users/diman/IdeaProjects/skin-market/web-service/target/classes/by/step/client/AuthServiceClient.class]
+2026-04-23 01:24:27.365 DEBUG [main] o.s.c.o.FeignClientsRegistrar$1 - Identified candidate component class: file [/mnt/c/Users/diman/IdeaProjects/skin-market/web-service/target/classes/by/step/client/BusinessServiceClient.class]
+2026-04-23 01:24:34.633 WARN  [main] o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 1ec8e0fc-771f-4271-8b61-c13f3ba74d3a
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-04-23 01:24:36.145 INFO  [main] o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@290964bd, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3411e0d7, org.springframework.security.web.context.SecurityContextHolderFilter@4f94b2a8, org.springframework.security.web.header.HeaderWriterFilter@7602da1a, org.springframework.web.filter.CorsFilter@6a2d0632, org.springframework.security.web.authentication.logout.LogoutFilter@1847da64, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2810d9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@408f3054, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@75044df3, org.springframework.security.web.access.ExceptionTranslationFilter@524250ec, org.springframework.security.web.access.intercept.AuthorizationFilter@7335aae5]
+2026-04-23 01:24:36.218 DEBUG [main] o.s.c.o.FeignClientFactoryBean - Creating a FeignClientFactoryBean.
+2026-04-23 01:24:36.224 DEBUG [main] o.s.c.o.FeignClientFactoryBean - Creating a FeignClientFactoryBean.
+2026-04-23 01:24:37.467 INFO  [main] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-04-23 01:24:37.468 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-04-23 01:24:37.472 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 3 ms
+2026-04-23 01:24:37.658 INFO  [main] b.step.controller.HomeControllerTest - Started HomeControllerTest in 15.553 seconds (process running for 19.998)
+2026-04-23 01:24:37.892 WARN  [main] o.s.w.s.h.HandlerMappingIntrospector - Cache miss for REQUEST dispatch to '/login' (previous null). Performing CorsConfiguration lookup. This is logged once only at WARN level, and every time at TRACE.
+2026-04-23 01:24:40.128 INFO  [main] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [by.step.controller.OrderControllerTest]: OrderControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-04-23 01:24:40.195 INFO  [main] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration by.step.WebServiceApplication for test class by.step.controller.OrderControllerTest
+2026-04-23 01:24:40.457 INFO  [main] b.s.controller.OrderControllerTest - Starting OrderControllerTest using Java 17.0.18 with PID 10166 (started by diman in /mnt/c/Users/diman/IdeaProjects/skin-market/web-service)
+2026-04-23 01:24:40.460 INFO  [main] b.s.controller.OrderControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-04-23 01:24:41.579 DEBUG [main] o.s.c.o.FeignClientsRegistrar$1 - Identified candidate component class: file [/mnt/c/Users/diman/IdeaProjects/skin-market/web-service/target/classes/by/step/client/AuthServiceClient.class]
+2026-04-23 01:24:41.580 DEBUG [main] o.s.c.o.FeignClientsRegistrar$1 - Identified candidate component class: file [/mnt/c/Users/diman/IdeaProjects/skin-market/web-service/target/classes/by/step/client/BusinessServiceClient.class]
+2026-04-23 01:24:42.117 DEBUG [main] o.s.c.o.FeignClientFactoryBean - Creating a FeignClientFactoryBean.
+2026-04-23 01:24:42.489 WARN  [main] o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 204fedbe-09b5-43fd-a467-dd1502899dff
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-04-23 01:24:42.588 INFO  [main] o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2f78ab54, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6eac0029, org.springframework.security.web.context.SecurityContextHolderFilter@24e273fd, org.springframework.security.web.header.HeaderWriterFilter@11cac750, org.springframework.web.filter.CorsFilter@979c3cb, org.springframework.security.web.csrf.CsrfFilter@5db4e558, org.springframework.security.web.authentication.logout.LogoutFilter@45f3891c, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4966454a, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@2ce01617, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@6ca96aef, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@28d9bd86, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5e86dc1c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6b57ac6a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6614e25, org.springframework.security.web.access.ExceptionTranslationFilter@5f5d5739, org.springframework.security.web.access.intercept.AuthorizationFilter@4142586b]
+2026-04-23 01:24:42.619 INFO  [main] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-04-23 01:24:42.621 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-04-23 01:24:42.624 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+2026-04-23 01:24:42.641 INFO  [main] b.s.controller.OrderControllerTest - Started OrderControllerTest in 2.433 seconds (process running for 24.981)
+2026-04-23 01:24:42.893 WARN  [main] o.s.w.s.h.HandlerMappingIntrospector - Cache miss for REQUEST dispatch to '/orders/customer/1' (previous null). Performing CorsConfiguration lookup. This is logged once only at WARN level, and every time at TRACE.
+2026-04-23 01:24:43.302 INFO  [main] by.step.controller.OrderController - Отмена заказа: 1
+2026-04-23 01:24:43.441 INFO  [main] by.step.controller.OrderController - Завершение заказа: 1
+2026-04-23 01:24:43.795 INFO  [main] by.step.controller.OrderController - Начало выполнения заказа: 1
+2026-04-23 01:24:43.853 INFO  [main] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [by.step.controller.UserControllerTest]: UserControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-04-23 01:24:43.915 INFO  [main] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration by.step.WebServiceApplication for test class by.step.controller.UserControllerTest
+2026-04-23 01:24:44.064 INFO  [main] b.step.controller.UserControllerTest - Starting UserControllerTest using Java 17.0.18 with PID 10166 (started by diman in /mnt/c/Users/diman/IdeaProjects/skin-market/web-service)
+2026-04-23 01:24:44.066 INFO  [main] b.step.controller.UserControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-04-23 01:24:45.132 DEBUG [main] o.s.c.o.FeignClientsRegistrar$1 - Identified candidate component class: file [/mnt/c/Users/diman/IdeaProjects/skin-market/web-service/target/classes/by/step/client/AuthServiceClient.class]
+2026-04-23 01:24:45.133 DEBUG [main] o.s.c.o.FeignClientsRegistrar$1 - Identified candidate component class: file [/mnt/c/Users/diman/IdeaProjects/skin-market/web-service/target/classes/by/step/client/BusinessServiceClient.class]
+2026-04-23 01:24:45.218 DEBUG [main] o.s.c.o.FeignClientFactoryBean - Creating a FeignClientFactoryBean.
+2026-04-23 01:24:45.548 WARN  [main] o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 0acf5e8b-2990-4766-a7ca-b03bd3eeb976
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-04-23 01:24:45.574 INFO  [main] o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@227032ec, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@518a9c8a, org.springframework.security.web.context.SecurityContextHolderFilter@15fc044d, org.springframework.security.web.header.HeaderWriterFilter@7a2fd9de, org.springframework.web.filter.CorsFilter@529503b0, org.springframework.security.web.csrf.CsrfFilter@61303259, org.springframework.security.web.authentication.logout.LogoutFilter@1edbdb0e, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@27d48912, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@6cbb6d0d, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@31f9cb3a, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@7ca3e595, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@753e5e51, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@68deb8e1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@12bd68bb, org.springframework.security.web.access.ExceptionTranslationFilter@11518582, org.springframework.security.web.access.intercept.AuthorizationFilter@5cd5fb8b]
+2026-04-23 01:24:45.583 INFO  [main] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-04-23 01:24:45.584 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-04-23 01:24:45.585 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+2026-04-23 01:24:45.596 INFO  [main] b.step.controller.UserControllerTest - Started UserControllerTest in 1.669 seconds (process running for 27.936)
+2026-04-23 01:24:45.604 WARN  [main] o.s.w.s.h.HandlerMappingIntrospector - Cache miss for REQUEST dispatch to '/users/1' (previous null). Performing CorsConfiguration lookup. This is logged once only at WARN level, and every time at TRACE.

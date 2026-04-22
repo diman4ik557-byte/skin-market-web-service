@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Детали пользователя - Skin Market</title>
+</head>
+<body>
+<h1>Профиль пользователя</h1>
+<p>Имя: <span th:text="${user.username}"></span></p>
+<p>Email: <span th:text="${user.email}"></span></p>
+<p>Роль: <span th:text="${user.role}"></span></p>
+<p>Баланс: <span th:text="${user.balance}"></span></p>
+<a href="/users">Назад к списку</a>
+</body>
+</html>
