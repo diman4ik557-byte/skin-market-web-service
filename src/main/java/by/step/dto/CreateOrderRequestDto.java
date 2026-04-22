@@ -1,8 +1,6 @@
 package by.step.dto;
 
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,21 +8,45 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
+/**
+ * DTO для создания нового заказа.
+ * Содержит данные, необходимые для создания заказа: кто заказывает, у кого, что и за сколько.
+ *
+ * @author Skin Market Team
+ * @version 1.0
+ */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateOrderRequestDto {
-    @NotNull(message = "Customer ID is required")
+
+    /**
+     * ID заказчика (не может быть негативным).
+     */
+    @Positive(message = "ID заказчика обязателен")
+    @Positive(message = "ID заказчика должен быть положительным числом")
     private Long customerId;
 
-    @NotNull(message = "Artist ID is required")
+    /**
+     * ID художника (не может быть null).
+     */
+    @NotNull(message = "ID художника обязателен")
+    @Positive(message = "ID художника должен быть положительным числом")
     private Long artistId;
 
-    @NotBlank(message = "Description is required")
+    /**
+     * Описание заказа (не может быть пустым).
+     */
+    @NotBlank(message = "Описание заказа обязательно")
+    @Size(min = 5, max = 5000, message = "Описание должно быть от 10 до 5000 символов")
     private String description;
 
-    @NotNull(message = "Price is required")
-    @Min(value = 1, message = "Price must be positive")
+    /**
+     * Цена заказа (должна быть положительной).
+     */
+    @NotNull(message = "Цена обязательна")
+    @DecimalMin(value = "1.00", message = "Цена должна быть не менее 1")
+    @DecimalMax(value = "100000.00", message = "Цена не может превышать 100000")
     private BigDecimal price;
 }
