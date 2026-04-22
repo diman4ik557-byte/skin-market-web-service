@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Чат - Заказ #<span th:text="${orderId}"></span></title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f0f2f5; height: 100vh; display: flex; flex-direction: column; }
+        .header { background: #667eea; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .header a { color: white; text-decoration: none; margin-left: 15px; }
+        .messages { flex: 1; overflow-y: auto; padding: 20px; background: #fff; }
+        .message { margin-bottom: 15px; display: flex; flex-direction: column; }
+        .message.sent { align-items: flex-end; }
+        .message.received { align-items: flex-start; }
+        .message-bubble { max-width: 70%; padding: 10px 15px; border-radius: 15px; margin-bottom: 5px; }
+        .message.sent .message-bubble { background: #667eea; color: white; border-bottom-right-radius: 5px; }
+        .message.received .message-bubble { background: #e9ecef; color: #333; border-bottom-left-radius: 5px; }
+        .message-info { font-size: 11px; color: #999; padding: 0 5px; }
+        .preview-badge { background: #ffc107; color: #333; font-size: 10px; padding: 2px 8px; border-radius: 10px; margin-left: 10px; display: inline-block; }
+        .attachment-link { margin-top: 5px; }
+        .attachment-link a { color: #667eea; text-decoration: none; font-size: 12px; }
+        .input-area { display: flex; padding: 15px; background: white; border-top: 1px solid #ddd; gap: 10px; }
+        .input-area input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 20px; outline: none; }
+        .input-area button { padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 20px; cursor: pointer; }
+        .input-area button:hover { background: #5a67d8; }
+        .preview-btn { background: #ffc107; color: #333; }
+        .attachment-btn { background: #6c757d; }
+        .nav-links { display: flex; gap: 20px; }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h2>Чат по заказу #<span th:text="${orderId}"></span></h2>
+    <div class="nav-links">
+        <a href="/orders">Назад к заказам</a>
+        <a href="/">Главная</a>
+    </div>
+</div>
+
+<div class="messages" id="messages">
+    <div style="text-align: center; color: #999; padding: 40px;">Загрузка сообщений...</div>
+</div>
+
+<div class="input-area">
+    <input type="text" id="messageInput" placeholder="Введите сообщение...">
+    <button id="sendBtn">Отправить</button>
+    <button id="previewBtn" class="preview-btn">Предпросмотр</button>
+    <button id="attachmentBtn" class="attachment-btn">Файл</button>
+</div>
+
+<div class="header">
+    <h2>Чат по заказу #<span th:id="orderId" th:text="${orderId}"></span></h2>
+    <div>
+        <button id="confirmOrderBtn" class="btn-confirm" style="display:none; background:#28a745; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer;">✅ Подтвердить заказ</button>
+        <a href="/orders" style="color:white; margin-left:15px;">Назад</a>
+    </div>
+</div>
+
+<script>
+    var orderId = [[${orderId}]];
+    var currentUser = null;
+
+    fetch('/users/profile/api')
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+            currentUser = data.username;
+        })
+        .catch(function(err) { console.log('Error getting user:', err); });
+
+    function loadMessages() {
+    fetch('/chat/api/messages/order/' + orderId)
+        .then(function(response) {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(function(messages) {
+            var container = document.getElementById('messages');
+            if (!messages || messages.length === 0) {
+                container.innerHTML = '<div style="text-align: center; color: #999; padding: 40px;">Нет сообщений. Напишите что-нибудь!</div>';
+                return;
+            }
+
+            container.innerHTML = '';
+            for (var i = 0; i < messages.length; i++) {
+                var msg = messages[i];
+                var div = document.createElement('div');
+                var isSent = msg.senderName === currentUser;
+                div.className = 'message ' + (isSent ? 'sent' : 'received');
+
+                var contentHtml = escapeHtml(msg.content || '');
+                if (msg.isPreview) {
+                    contentHtml = contentHtml + ' <span class="preview-badge">🎨 Предпросмотр</span>';
+                }
+
+                var attachmentHtml = '';
+                if (msg.attachmentUrl) {
+                    attachmentHtml = '<div class="attachment-link"><a href="' + msg.attachmentUrl + '" target="_blank">📎 Скачать файл</a></div>';
+                }
+
+                var date = new Date(msg.sentAt);
+                var dateStr = date.toLocaleString();
+
+                div.innerHTML = '<div class="message-bubble">' + contentHtml + attachmentHtml + '</div>' +
+                    '<div class="message-info">' + escapeHtml(msg.senderName) + ' • ' + dateStr + '</div>';
+                container.appendChild(div);
+            }
+            container.scrollTop = container.scrollHeight;
+
+            // Проверяем наличие предпросмотра для кнопки подтверждения
+            checkAndShowConfirmButton(messages);
+        })
+        .catch(function(err) {
+            console.error('Error loading messages:', err);
+            var container = document.getElementById('messages');
+            container.innerHTML = '<div style="text-align: center; color: red; padding: 40px;">Ошибка загрузки сообщений</div>';
+        });
+    }
+
+
+    function escapeHtml(text) {
+        if (!text) return '';
+        var div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    function sendMessage() {
+    var input = document.getElementById('messageInput');
+    var content = input.value.trim();
+    if (!content) {
+        alert('Введите сообщение');
+        return;
+    }
+
+    fetch('/chat/api/messages/send?orderId=' + orderId + '&content=' + encodeURIComponent(content), {
+        method: 'POST'
+    }).then(function(response) {
+        if (response.ok) {
+            input.value = '';
+            loadMessages();
+        } else {
+            alert('Ошибка отправки');
+        }
+    }).catch(function(error) {
+        console.error('Error:', error);
+        alert('Ошибка отправки');
+    });
+}
+
+function sendPreview() {
+    var content = prompt('Введите описание предпросмотра:');
+    if (!content) return;
+    var url = prompt('Введите URL изображения предпросмотра:');
+    if (!url) return;
+
+    fetch('/chat/api/messages/preview?orderId=' + orderId + '&content=' + encodeURIComponent(content) + '&attachmentUrl=' + encodeURIComponent(url), {
+        method: 'POST'
+    }).then(function(response) {
+        if (response.ok) {
+            loadMessages();
+        } else {
+            alert('Ошибка отправки');
+        }
+    }).catch(function(error) {
+        console.error('Error:', error);
+        alert('Ошибка отправки');
+    });
+}
+
+function sendAttachment() {
+    var url = prompt('Введите URL файла:');
+    if (!url) return;
+
+    fetch('/chat/api/messages/attachment?orderId=' + orderId + '&attachmentUrl=' + encodeURIComponent(url), {
+        method: 'POST'
+    }).then(function(response) {
+        if (response.ok) {
+            loadMessages();
+        } else {
+            alert('Ошибка отправки');
+        }
+    }).catch(function(error) {
+        console.error('Error:', error);
+        alert('Ошибка отправки');
+    });
+}
+
+    function checkAndShowConfirmButton(messages) {
+    var hasPreview = false;
+    for (var i = 0; i < messages.length; i++) {
+        if (messages[i].isPreview === true && messages[i].senderName !== currentUser) {
+            hasPreview = true;
+            break;
+        }
+    }
+
+    var confirmBtn = document.getElementById('confirmOrderBtn');
+    if (confirmBtn) {
+        if (hasPreview && currentUser !== 'artist') {
+            confirmBtn.style.display = 'inline-block';
+        } else {
+            confirmBtn.style.display = 'none';
+        }
+    }
+}
+
+function confirmOrder() {
+    var orderId = [[${orderId}]];
+    if (confirm('Подтвердить выполнение заказа?')) {
+        fetch('/orders/' + orderId + '/complete', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        }).then(function(response) {
+            if (response.ok) {
+                alert('Заказ подтвержден!');
+                window.location.href = '/orders';
+            } else {
+                alert('Ошибка подтверждения');
+            }
+        });
+    }
+}
+
+// В функции loadMessages после отображения сообщений добавьте:
+checkAndShowConfirmButton(messages);
+
+// В DOMContentLoaded добавьте:
+var confirmBtn = document.getElementById('confirmOrderBtn');
+if (confirmBtn) {
+    confirmBtn.onclick = confirmOrder;
+}
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('sendBtn').onclick = sendMessage;
+        document.getElementById('previewBtn').onclick = sendPreview;
+        document.getElementById('attachmentBtn').onclick = sendAttachment;
+
+        var input = document.getElementById('messageInput');
+        input.onkeypress = function(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        };
+
+        loadMessages();
+        setInterval(loadMessages, 5000);
+    });
+</script>
+</body>
+</html>

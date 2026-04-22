@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход - Skin Market</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        .login-container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            width: 350px;
+        }
+        h2 { text-align: center; color: #333; }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover { opacity: 0.9; }
+        .error {
+            color: red;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .logout {
+            color: green;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .test-users {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+<div class="login-container">
+    <h2>Вход в Skin Market</h2>
+
+    <div th:if="${param.error}" class="error">
+        Неверное имя пользователя или пароль
+    </div>
+
+    <div th:if="${param.logout}" class="logout">
+        Вы вышли из системы
+    </div>
+
+    <form th:action="@{/perform_login}" method="post">
+        <input type="text" name="username" placeholder="Имя пользователя" required autofocus>
+        <input type="password" name="password" placeholder="Пароль" required>
+        <button type="submit">Войти</button>
+    </form>
+
+    <div class="test-users">
+        <strong>Тестовые пользователи:</strong><br>
+        user / user123 (USER)<br>
+        artist / artist123 (ARTIST)<br>
+        admin / admin123 (ADMIN)
+    </div>
+
+    <div class="link">
+        <a href="/register">Нет аккаунта? Зарегистрироваться</a>
+    </div>
+</div>
+</body>
+</html>

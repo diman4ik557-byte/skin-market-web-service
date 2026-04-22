@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Skin Market</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        h1 { color: #333; }
+        .nav { margin: 20px 0; }
+        .nav a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: #667eea;
+        }
+        .nav a:hover { text-decoration: underline; }
+        .welcome { color: #666; margin-top: 20px; }
+        .logout-form { display: inline; }
+        .logout-btn {
+            background: none;
+            border: none;
+            color: #667eea;
+            cursor: pointer;
+            margin-right: 15px;
+        }
+        .logout-btn:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🎨 Skin Market</h1>
+    <p>Платформа для заказа Minecraft скинов</p>
+
+    <div class="nav">
+        <a href="/">Главная</a>
+        <a href="/users/profile">Мой профиль</a>
+        <a href="/marketplace">Доска художников</a>
+        <a href="/orders">Мои заказы</a>
+        <a href="/studios">Студии</a>
+        <form th:action="@{/logout}" method="post" class="logout-form">
+            <button type="submit" class="logout-btn">Выход</button>
+        </form>
+    </div>
+
+    <div class="welcome">
+        <p>Добро пожаловать, <span sec:authentication="name">User</span>!</p>
+        <p>Здесь вы можете заказать уникальный скин для Minecraft у лучших художников.</p>
+        <a href="/marketplace" class="btn">🛒 Заказать скин</a>
+    </div>
+</div>
+</body>
+</html>

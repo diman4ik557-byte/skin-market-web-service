@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Мои заказы (художник) - Skin Market</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; }
+        .nav a { margin-right: 15px; text-decoration: none; color: #667eea; }
+        .order-card { border: 1px solid #ddd; border-radius: 10px; padding: 20px; margin: 15px 0; background: #f8f9fa; }
+        .status-NEW { color: #007bff; font-weight: bold; }
+        .status-IN_PROGRESS { color: #ffc107; font-weight: bold; }
+        .status-REVIEW { color: #17a2b8; font-weight: bold; }
+        .status-COMPLETED { color: #28a745; font-weight: bold; }
+        .status-CANCELLED { color: #dc3545; font-weight: bold; }
+        .btn { padding: 8px 15px; margin: 5px; border: none; border-radius: 5px; cursor: pointer; }
+        .btn-accept { background: #28a745; color: white; }
+        .btn-reject { background: #dc3545; color: white; }
+        .btn-review { background: #ffc107; color: black; }
+        .btn-complete { background: #007bff; color: white; }
+
+        /* Пагинация */
+        .pagination { display: flex; justify-content: center; margin-top: 30px; gap: 5px; flex-wrap: wrap; }
+        .pagination a, .pagination span { padding: 8px 12px; text-decoration: none; border: 1px solid #ddd; border-radius: 4px; color: #667eea; }
+        .pagination a:hover { background: #667eea; color: white; }
+        .pagination .active { background: #667eea; color: white; border-color: #667eea; }
+        .pagination .disabled { color: #ccc; cursor: not-allowed; }
+
+        .info-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .page-size-select { padding: 5px; border-radius: 4px; }
+
+        .btn-chat {
+    background: #17a2b8;
+    color: white;
+    padding: 5px 10px;
+    margin: 2px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+.btn-chat:hover {
+    background: #138496;
+}
+}
+.chat-link:hover {
+    text-decoration: underline;
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="nav">
+        <a href="/">Главная</a>
+        <a href="/marketplace">Доска художников</a>
+        <a href="/users/profile">Профиль</a>
+        <a href="/orders">Заказы</a>
+        <a href="/orders/create">Создать заказ</a>
+        <a href="/artist/orders">Мои заказы (художник)</a>
+        <a href="/studios">Студии</a>
+        <form th:action="@{/logout}" method="post" style="display:inline;">
+            <button type="submit" style="background:none; border:none; color:#667eea; cursor:pointer;">Выйти</button>
+        </form>
+    </div>
+
+    <h1>🎨 Мои заказы (художник)</h1>
+
+    <div class="info-bar">
+        <div>Всего заказов: <strong th:text="${totalItems}"></strong></div>
+        <div>
+            Показывать по:
+            <select class="page-size-select" onchange="changePageSize(this.value)">
+                <option value="5" th:selected="${pageSize == 5}">5</option>
+                <option value="10" th:selected="${pageSize == 10}">10</option>
+                <option value="20" th:selected="${pageSize == 20}">20</option>
+                <option value="50" th:selected="${pageSize == 50}">50</option>
+            </select>
+        </div>
+    </div>
+
+    <div th:if="${orders == null or orders.empty}">
+        <p>У вас пока нет заказов</p>
+    </div>
+
+    <div th:unless="${orders == null or orders.empty}">
+
+        <div th:each="order : ${orders}" class="order-card">
+            <h3>Заказ #<span th:text="${order.id}"></span></h3>
+            <p><strong>Клиент:</strong> <span th:text="${order.customerName}"></span></p>
+            <p><strong>Описание:</strong> <span th:text="${order.description}"></span></p>
+            <p><strong>Цена:</strong> <span th:text="${order.price}"></span></p>
+            <p><strong>Статус:</strong>
+                <span th:class="'status-' + ${order.status.name()}" th:text="${order.status}"></span>
+            </p>
+
+            <div th:if="${order.status.name() == 'NEW'}">
+                <form th:action="@{/artist/orders/{id}/accept(id=${order.id})}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-accept">✅ Принять заказ</button>
+                </form>
+                <form th:action="@{/artist/orders/{id}/reject(id=${order.id})}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-reject">❌ Отклонить</button>
+                </form>
+
+            </div>
+
+            <a th:href="@{/chat/order/{id}(id=${order.id})}" class="btn btn-chat">💬 Чат</a>
+
+            <div th:if="${order.status.name() == 'IN_PROGRESS'}">
+                <form th:action="@{/artist/orders/{id}/submit-review(id=${order.id})}"
+                      method="post" style="display:inline;">
+                    <input type="hidden" name="finalFileUrl" th:value="'/uploads/order_' + ${order.id} + '_final.png'">
+                    <button type="submit" class="btn btn-review">Отправить на проверку</button>
+                </form>
+            </div>
+
+            <div th:if="${order.status.name() == 'REVIEW'}">
+                <form th:action="@{/artist/orders/{id}/complete(id=${order.id})}"
+                      method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-complete">Завершить заказ</button>
+                </form>
+            </div>
+
+
+
+
+            <div th:if="${order.status.name() == 'COMPLETED' or order.status.name() == 'CANCELLED'}">
+                <span style="color: #6c757d;">Заказ обработан</span>
+            </div>
+        </div>
+
+        <div class="pagination">
+            <a th:if="${currentPage > 0}" th:href="@{/artist/orders(page=${currentPage - 1},
+             size=${pageSize}, sort=${sortField})}">« Предыдущая</a>
+            <span th:if="${currentPage == 0}" class="disabled">« Предыдущая</span>
+
+            <a th:each="pageNum : ${pageNumbers}"
+               th:href="@{/artist/orders(page=${pageNum}, size=${pageSize}, sort=${sortField})}"
+               th:text="${pageNum + 1}"
+               th:class="${pageNum == currentPage} ? 'active' : ''"></a>
+
+            <a th:if="${currentPage + 1 < totalPages}" th:href="@{/artist/orders(page=${currentPage + 1},
+             size=${pageSize}, sort=${sortField})}">Следующая »</a>
+            <span th:if="${currentPage + 1 >= totalPages}" class="disabled">Следующая »</span>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function changePageSize(size) {
+    window.location.href = '/marketplace?page=0&size=' + size + '&sort=' + '[[${sortField}]]' + '&direction=' + '[[${sortDirection}]]';
+}
+
+function changeSort(sort) {
+    window.location.href = '/marketplace?page=0&size=' + '[[${pageSize}]]' + '&sort=' + sort + '&direction=' + '[[${sortDirection}]]';
+}
+
+function changeDirection() {
+    var newDirection = '[[${sortDirection}]]' === 'ASC' ? 'DESC' : 'ASC';
+    window.location.href = '/marketplace?page=0&size=' + '[[${pageSize}]]' + '&sort=' + '[[${sortField}]]' + '&direction=' + newDirection;
+}
+</script>
+</body>
+</html>

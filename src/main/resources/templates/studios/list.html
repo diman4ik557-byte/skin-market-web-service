@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Студии - Skin Market</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; }
+        .nav a { margin-right: 15px; text-decoration: none; color: #667eea; }
+        .studio-card { border: 1px solid #ddd; padding: 15px; margin: 15px 0; border-radius: 8px; background: #fafafa; }
+        .studio-name { font-size: 18px; font-weight: bold; color: #333; }
+        .studio-desc { color: #666; margin: 10px 0; }
+        .btn { display: inline-block; padding: 8px 15px; background: #667eea; color: white; text-decoration: none; border-radius: 4px; }
+        .btn-create { background: #28a745; margin-bottom: 20px; display: inline-block; }
+        h1 { margin-bottom: 20px; }
+
+        /* Пагинация */
+        .pagination { display: flex; justify-content: center; margin-top: 30px; gap: 5px; flex-wrap: wrap; }
+        .pagination a, .pagination span { padding: 8px 12px; text-decoration: none; border: 1px solid #ddd; border-radius: 4px; color: #667eea; }
+        .pagination a:hover { background: #667eea; color: white; }
+        .pagination .active { background: #667eea; color: white; border-color: #667eea; }
+        .pagination .disabled { color: #ccc; cursor: not-allowed; }
+
+        .info-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .page-size-select { padding: 5px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="nav">
+        <a href="/">Главная</a>
+        <a href="/marketplace">Художники</a>
+        <a href="/studios">Студии</a>
+        <a href="/users/profile">Профиль</a>
+        <a href="/orders">Заказы</a>
+    </div>
+
+    <h1>🏢 Студии художников</h1>
+
+    <div class="info-bar">
+        <a href="/studios/create" class="btn btn-create">+ Создать студию</a>
+        <div>
+            Показывать по:
+            <select class="page-size-select" onchange="changePageSize(this.value)">
+                <option value="5" th:selected="${pageSize == 5}">5</option>
+                <option value="10" th:selected="${pageSize == 10}">10</option>
+                <option value="20" th:selected="${pageSize == 20}">20</option>
+                <option value="50" th:selected="${pageSize == 50}">50</option>
+            </select>
+        </div>
+    </div>
+
+    <div th:if="${studios == null or studios.empty}">
+        <p>Пока нет зарегистрированных студий. <a href="/studios/create">Создайте первую студию!</a></p>
+    </div>
+
+    <div th:unless="${studios == null or studios.empty}">
+        <div th:each="studio : ${studios}" class="studio-card">
+            <div class="studio-name" th:text="${studio.name}"></div>
+            <div class="studio-desc" th:text="${studio.description}"></div>
+            <div style="margin-top: 10px;">
+                <a th:href="@{/studios/{id}(id=${studio.id})}" class="btn">Подробнее</a>
+            </div>
+        </div>
+
+        <!-- Пагинация -->
+        <div class="pagination">
+            <a th:if="${currentPage > 0}" th:href="@{/studios(page=${currentPage - 1}, size=${pageSize}, sort=${sortField})}">« Предыдущая</a>
+            <span th:if="${currentPage == 0}" class="disabled">« Предыдущая</span>
+
+            <a th:each="pageNum : ${pageNumbers}"
+               th:href="@{/studios(page=${pageNum}, size=${pageSize}, sort=${sortField})}"
+               th:text="${pageNum + 1}"
+               th:class="${pageNum == currentPage} ? 'active' : ''"></a>
+
+            <a th:if="${currentPage + 1 < totalPages}" th:href="@{/studios(page=${currentPage + 1}, size=${pageSize}, sort=${sortField})}">Следующая »</a>
+            <span th:if="${currentPage + 1 >= totalPages}" class="disabled">Следующая »</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    function changePageSize(size) {
+    window.location.href = '/marketplace?page=0&size=' + size + '&sort=' + '[[${sortField}]]' + '&direction=' + '[[${sortDirection}]]';
+}
+
+function changeSort(sort) {
+    window.location.href = '/marketplace?page=0&size=' + '[[${pageSize}]]' + '&sort=' + sort + '&direction=' + '[[${sortDirection}]]';
+}
+
+function changeDirection() {
+    var newDirection = '[[${sortDirection}]]' === 'ASC' ? 'DESC' : 'ASC';
+    window.location.href = '/marketplace?page=0&size=' + '[[${pageSize}]]' + '&sort=' + '[[${sortField}]]' + '&direction=' + newDirection;
+}
+</script>
+</body>
+</html>
